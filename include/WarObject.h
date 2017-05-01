@@ -24,6 +24,7 @@ class WarObject
     public:
         void setLocation(int row, int column, int turned);
         void setObjectSize(int rowSize, int columnSize, char identifier);
+        void setName(std::string name);
 
     public:
         int getRowLocation();
@@ -32,4 +33,8 @@ class WarObject
         int getColumnSize();
         int getTurned();
         char getIdentifier();
+        int getDamage();
+        int getHealth();
+        int getRange();
+        std::string getName();
 };

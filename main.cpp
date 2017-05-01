@@ -3,44 +3,40 @@
 #include "DefaultTank.h"
 #include <string>
 #include <cstdlib>
+#include <vector>
+#include "UiHandler.h"
+
 
 using namespace std;
 
 Field* field;
-WarObject* warobject;
+UiHandler* uiHandler;
+
+std::vector<WarObject *> warObjectList;
 
 int main()
 {
+    //Init Uihandler
+    uiHandler = new UiHandler();
+
+    //Init field
     field = new Field();
     field->fillWith(' ');
+
+    //Adding Tanks
+    warObjectList.push_back(new DefaultTank());
+    warObjectList.push_back(new DefaultTank());
+    warObjectList.push_back(new DefaultTank());
+
+    //Setting tank locations
+    warObjectList[1]->setLocation(3,4,0);
+    warObjectList[2]->setLocation(7,5,1);
+
+    //Drawing tanks
+    field->drawWarObjects(warObjectList);
     std::cout << field->generateField() << std::endl;
 
-    warobject = new DefaultTank();
-    field->drawWarObject(warobject);
-    std::cout << field->generateField() << std::endl;
+    //Showing the tank stats
+    std::cout << uiHandler->printWarObjects(warObjectList) << std::endl;
 
-    field->reset();
-    warobject->setLocation(3,4,0);
-    field->drawWarObject(warobject);
-    std::cout << field->generateField() << std::endl;
-
-
-    do {
-    int row;
-    int column;
-    int turned;
-    std::cout << "Row Location: ";
-    cin >> row;
-    std::cout << "Column Location: ";
-    cin >> column;
-    std::cout << "90deg turned? (0:NO 1:YES): ";
-    cin >> turned;
-
-    field->reset();
-    warobject->setLocation(row ,column, turned);
-    field->drawWarObject(warobject);
-    std::cout << field->generateField() << std::endl;
-
-
-  } while (1);
 }

@@ -1,7 +1,7 @@
 #pragma once
 #include <string>
 #include "WarObject.h"
-
+#include <vector>
 
 
 class Field
@@ -19,6 +19,7 @@ class Field
         void reset();
         void fillWith(char character);
         void drawWarObject(WarObject* warobject);
+        void drawWarObjects(std::vector<WarObject *> warObjectList);
 
     public:
         std::string generateField();

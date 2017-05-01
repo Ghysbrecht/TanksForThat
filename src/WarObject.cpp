@@ -38,3 +38,18 @@ int WarObject::getTurned(){
 char WarObject::getIdentifier(){
     return this->identifier;
 }
+int WarObject::getRange(){
+    return this->range;
+}
+int WarObject::getHealth(){
+    return this->health;
+}
+int WarObject::getDamage(){
+    return this->damage;
+}
+void WarObject::setName(std::string name){
+    this->name = name;
+}
+std::string WarObject::getName(){
+    return this->name;
+}

@@ -73,3 +73,9 @@ void Field::drawWarObject(WarObject* warobject){
 void Field::reset(){
     fillWith(' ');
 }
+
+void Field::drawWarObjects(std::vector<WarObject *> warObjectList){
+    for(int i = 0; i<warObjectList.size(); i++){
+        drawWarObject(warObjectList[i]);
+    }
+}

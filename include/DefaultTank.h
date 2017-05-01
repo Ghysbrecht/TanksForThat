@@ -17,9 +17,6 @@ class DefaultTank : public WarObject
         static const int COLUMNLOCATION = 0;
         static const int TURNED = 0;
 
-
-        std::string name;
-
     public:
         DefaultTank();
 
