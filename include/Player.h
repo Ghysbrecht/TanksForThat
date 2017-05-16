@@ -4,6 +4,7 @@
 #include "UiHandler.h"
 #include "WarObject.h"
 #include "Location.h"
+#include "CollisionDetector.h"
 
 class Player
 {
@@ -13,6 +14,7 @@ class Player
 
         Field * field;
         UiHandler * uiHandler;
+        CollisionDetector * detector;
         std::vector<WarObject *> warObjectList;
         std::vector<WarObject *> generalWarObjectList;
         std::vector<Bullet *> firedBullets;

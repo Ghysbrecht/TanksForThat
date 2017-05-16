@@ -5,6 +5,7 @@ Player::Player(int credits, std::vector<WarObject *> generalWarObjectList, UiHan
     this->credits = credits;
     this->generalWarObjectList = generalWarObjectList;
     this->uiHandler = uiHandler;
+    detector = new CollisionDetector();
     field = new Field();
     field->fillWith(' ');
     lastHitStatus = 0;

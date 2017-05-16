@@ -36,7 +36,6 @@ void HumanPlayer::init(){
             case 1: tankPointer = new DefaultTank(); break;
             case 2: tankPointer = new LaserTank(); break;
         }
-        warObjectList.push_back(tankPointer);
 
         system("cls");
         uiHandler->printMessage("Place your newly purchased tank. Make sure to not place them outside the area or on other tanks.");
@@ -47,11 +46,18 @@ void HumanPlayer::init(){
         field->drawWarObjects(warObjectList);
         uiHandler->printMessage(field->generateField());
 
+        bool alright = false;
+        Location * location;
+        while(!alright){
+            location = uiHandler->askLocation("Enter the coordinates (eg. C5): ", field->getColumnSize() - tankPointer->getColumnSize(), field->getRowSize() - tankPointer->getRowSize());
+            tankPointer->setLocation(location->getYLocation(), location->getXLocation(), 0);
+            if(!detector->checkObjectCollision(warObjectList,tankPointer)) alright = true;
+            else uiHandler->printMessage("That location is not valid!");
+        }
 
-        Location * location = uiHandler->askLocation("Enter the coordinates (eg. C5): ", field->getColumnSize() - tankPointer->getColumnSize(), field->getRowSize() - tankPointer->getRowSize());
-        warObjectList.back()->setLocation(location->getYLocation(), location->getXLocation(), 0);
         delete location;
 
+        warObjectList.push_back(tankPointer);
         system("cls");
     }
 

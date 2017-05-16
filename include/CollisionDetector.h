@@ -8,6 +8,7 @@ class CollisionDetector
 {
     public:
         WarObject * returnCollidedObject( std::vector<WarObject *> warObjectList, Location * location );
-        int checkBorderCollision(WarObject * warObject);
+        int checkObjectCollision(std::vector<WarObject *> warObjectList, WarObject * warObject);
 };
+
 

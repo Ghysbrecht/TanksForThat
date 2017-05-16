@@ -5,7 +5,7 @@ WarObject * CollisionDetector::returnCollidedObject(std::vector<WarObject *> war
 
     for(int i=0; i < warObjectList.size(); i++){
 
-        printf("Starting the collision detection for tank nr. %i\n",i);
+        //printf("Starting the collision detection for tank nr. %i\n",i);
 
         int warObjectX = warObjectList[i]->getColumnLocation();
         int warObjectY = warObjectList[i]->getRowLocation();
@@ -33,7 +33,7 @@ WarObject * CollisionDetector::returnCollidedObject(std::vector<WarObject *> war
                 //printf("Scanning x=%i y=%i \n", warObjectX+j, warObjectY+k);
                 if(locationX == (warObjectX + j) && locationY == (warObjectY + k)){
                     //Hit detected!
-                    //printf("HIT DETECTED!");
+                    //printf("HIT DETECTED!\n");
                     return warObjectList[i];
                 }
             }
@@ -41,5 +41,19 @@ WarObject * CollisionDetector::returnCollidedObject(std::vector<WarObject *> war
 
     }
 
+}
+
+int CollisionDetector::checkObjectCollision(std::vector<WarObject *> warObjectList, WarObject * warObject){
+    for(int i=0; i<warObject->getColumnSize(); i++){
+        for(int j=0; j<warObject->getRowSize(); j++){
+            Location * location = new Location(i+warObject->getColumnLocation(), j+warObject->getRowLocation());
+            if(returnCollidedObject(warObjectList, location) != nullptr){
+                delete location;
+                return 1;
+            }
+            delete location;
+        }
+    }
+    return 0;
 }
 
