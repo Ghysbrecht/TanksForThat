@@ -1,42 +1,32 @@
-#include "field.h"
 #include <iostream>
 #include "DefaultTank.h"
+#include "LaserTank.h"
 #include <string>
 #include <cstdlib>
 #include <vector>
 #include "UiHandler.h"
+#include "Player.h"
+#include "HumanPlayer.h"
+#include "CollisionDetector.h"
 
-
-using namespace std;
-
-Field* field;
 UiHandler* uiHandler;
 
-std::vector<WarObject *> warObjectList;
+std::vector<WarObject *> generalWarObjectList;
 
 int main()
 {
+    int credits = 400;
+
     //Init Uihandler
     uiHandler = new UiHandler();
 
-    //Init field
-    field = new Field();
-    field->fillWith(' ');
+    //Adding all Tanks
+    generalWarObjectList.push_back(new DefaultTank());
+    generalWarObjectList.push_back(new LaserTank());
 
-    //Adding Tanks
-    warObjectList.push_back(new DefaultTank());
-    warObjectList.push_back(new DefaultTank());
-    warObjectList.push_back(new DefaultTank());
+    Player * playerOne = new HumanPlayer(600, generalWarObjectList, uiHandler);
 
-    //Setting tank locations
-    warObjectList[1]->setLocation(3,4,0);
-    warObjectList[2]->setLocation(7,5,1);
-
-    //Drawing tanks
-    field->drawWarObjects(warObjectList);
-    std::cout << field->generateField() << std::endl;
-
-    //Showing the tank stats
-    std::cout << uiHandler->printWarObjects(warObjectList) << std::endl;
+    playerOne->init();
+    playerOne->yourTurn();
 
 }

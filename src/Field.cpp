@@ -79,3 +79,20 @@ void Field::drawWarObjects(std::vector<WarObject *> warObjectList){
         drawWarObject(warObjectList[i]);
     }
 }
+
+int Field::getRowSize(){
+    return ROWS;
+}
+int Field::getColumnSize(){
+    return COLUMNS;
+}
+
+void Field::drawBullets(std::vector<Bullet *> bullets){
+    for(int i = 0; i<bullets.size(); i++){
+        drawBullet(bullets[i]);
+    }
+}
+
+void Field::drawBullet(Bullet * bullet){
+    fieldArray[bullet->getYLocation()][bullet->getXLocation()] = bullet->getSymbol();
+}

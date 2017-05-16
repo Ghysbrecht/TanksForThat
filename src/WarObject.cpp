@@ -47,6 +47,12 @@ int WarObject::getHealth(){
 int WarObject::getDamage(){
     return this->damage;
 }
+int WarObject::getCreditCost(){
+    return this->creditCost;
+}
+void WarObject::setCreditCost(int creditCost){
+    this->creditCost = creditCost;
+}
 void WarObject::setName(std::string name){
     this->name = name;
 }

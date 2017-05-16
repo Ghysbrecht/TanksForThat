@@ -17,6 +17,7 @@ class WarObject
 
         std::string name;
         char identifier;
+        int creditCost;
 
     public:
         WarObject(int damage, int health, int range);
@@ -25,6 +26,7 @@ class WarObject
         void setLocation(int row, int column, int turned);
         void setObjectSize(int rowSize, int columnSize, char identifier);
         void setName(std::string name);
+        void setCreditCost(int creditCost);
 
     public:
         int getRowLocation();
@@ -36,5 +38,6 @@ class WarObject
         int getDamage();
         int getHealth();
         int getRange();
+        int getCreditCost();
         std::string getName();
 };
