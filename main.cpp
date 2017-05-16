@@ -15,7 +15,6 @@ std::vector<WarObject *> generalWarObjectList;
 
 int main()
 {
-    int credits = 400;
 
     //Init Uihandler
     uiHandler = new UiHandler();
@@ -24,7 +23,7 @@ int main()
     generalWarObjectList.push_back(new DefaultTank());
     generalWarObjectList.push_back(new LaserTank());
 
-    Player * playerOne = new HumanPlayer(600, generalWarObjectList, uiHandler);
+    Player * playerOne = new HumanPlayer(400, generalWarObjectList, uiHandler);
 
     playerOne->init();
     playerOne->yourTurn();

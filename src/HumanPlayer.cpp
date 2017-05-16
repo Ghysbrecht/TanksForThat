@@ -48,7 +48,7 @@ void HumanPlayer::init(){
         uiHandler->printMessage(field->generateField());
 
 
-        Location * location = uiHandler->askLocation("Enter the coordinates (eg. C5): ", field->getColumnSize(), field->getRowSize());
+        Location * location = uiHandler->askLocation("Enter the coordinates (eg. C5): ", field->getColumnSize() - tankPointer->getColumnSize(), field->getRowSize() - tankPointer->getRowSize());
         warObjectList.back()->setLocation(location->getYLocation(), location->getXLocation(), 0);
         delete location;
 
