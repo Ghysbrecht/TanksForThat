@@ -44,8 +44,15 @@ WarObject * CollisionDetector::returnCollidedObject(std::vector<WarObject *> war
 }
 
 int CollisionDetector::checkObjectCollision(std::vector<WarObject *> warObjectList, WarObject * warObject){
-    for(int i=0; i<warObject->getColumnSize(); i++){
-        for(int j=0; j<warObject->getRowSize(); j++){
+    int columnSize = warObject->getColumnSize();
+    int rowSize = warObject->getRowSize();
+    if(warObject->getTurned()){
+        int temp = rowSize;
+        rowSize = columnSize;
+        columnSize = temp;
+    }
+    for(int i=0; i<columnSize; i++){
+        for(int j=0; j<rowSize; j++){
             Location * location = new Location(i+warObject->getColumnLocation(), j+warObject->getRowLocation());
             if(returnCollidedObject(warObjectList, location) != nullptr){
                 delete location;

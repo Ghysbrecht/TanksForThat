@@ -24,14 +24,15 @@ class Player
         virtual void init() = 0;
         virtual void yourTurn() = 0;
         void incommingBullet(Bullet * bullet);
-        reportLastFireAtempt(int status);
+        void deleteDeadObjects();
 
     public:
-        addFiredBullet(Bullet * bullet); //Add a location where you want to fire to
+        void addFiredBullet(Bullet * bullet); //Add a location where you want to fire to
 
     public:
         Bullet * getLastFiredBullet();
         std::vector<Bullet *> getAllFiredBullets();
+        int checkForReusedShootingLocation(Location * location);
 
 };
 

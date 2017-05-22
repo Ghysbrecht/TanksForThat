@@ -59,3 +59,8 @@ void WarObject::setName(std::string name){
 std::string WarObject::getName(){
     return this->name;
 }
+
+void WarObject::doDamage(int damage){
+    this->health -= damage;
+    if(this->health < 0) this->health = 0;
+}

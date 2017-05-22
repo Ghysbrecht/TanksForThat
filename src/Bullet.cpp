@@ -23,3 +23,7 @@ int Bullet::getXLocation(){
 int Bullet::getYLocation(){
     return location->getYLocation();
 }
+
+int Bullet::getDamage(){
+    return damage;
+}

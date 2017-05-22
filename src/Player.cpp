@@ -12,7 +12,7 @@ Player::Player(int credits, std::vector<WarObject *> generalWarObjectList, UiHan
 }
 
 
-Player::addFiredBullet(Bullet * bullet){
+void Player::addFiredBullet(Bullet * bullet){
     firedBullets.push_back(bullet);
 }
 
@@ -21,16 +21,31 @@ Bullet * Player::getLastFiredBullet(){
 }
 
 void Player::incommingBullet(Bullet * bullet){
-    //WarObject * warObject = CollisionDetector::returnColidedObject(warObjectList, location);
-    //if(warObject == nullptr) //No HIT
-    //else //HIT!
-}
-
-Player::reportLastFireAtempt(int status){
-    return lastHitStatus;
+    Location * location = new Location(bullet->getXLocation(), bullet->getYLocation());
+    WarObject * warObject = detector->returnCollidedObject(warObjectList, location);
+    if(warObject == nullptr) bullet->setSymbol('M');
+    else{
+        bullet->setSymbol('H');
+        warObject->doDamage(bullet->getDamage());
+    }
+    //Check if there are dead tanks
+    deleteDeadObjects();
+    delete location;
 }
 
 std::vector<Bullet *> Player::getAllFiredBullets(){
     return firedBullets;
 }
 
+void Player::deleteDeadObjects(){
+    for(int i=0; i<warObjectList.size(); i++ ){
+        if(warObjectList[i]->getHealth() == 0) warObjectList.erase(warObjectList.begin()+i);
+    }
+}
+
+int Player::checkForReusedShootingLocation(Location * location){
+    for(int i=0; i<firedBullets.size(); i++){
+        if((location->getXLocation() == firedBullets[i]->getXLocation()) && (location->getYLocation() == firedBullets[i]->getYLocation())) return 1;
+    }
+    return 0;
+}

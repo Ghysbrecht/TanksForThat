@@ -50,7 +50,8 @@ void HumanPlayer::init(){
         Location * location;
         while(!alright){
             location = uiHandler->askLocation("Enter the coordinates (eg. C5): ", field->getColumnSize() - tankPointer->getColumnSize(), field->getRowSize() - tankPointer->getRowSize());
-            tankPointer->setLocation(location->getYLocation(), location->getXLocation(), 0);
+            int turned = uiHandler->askNumber("Turn the tank by 90deg?  (1=YES 0=NO): ",0, 1);
+            tankPointer->setLocation(location->getYLocation(), location->getXLocation(), turned);
             if(!detector->checkObjectCollision(warObjectList,tankPointer)) alright = true;
             else uiHandler->printMessage("That location is not valid!");
         }
@@ -82,7 +83,22 @@ void HumanPlayer::yourTurn(){
     uiHandler->printMessage(field->generateField());
     uiHandler->printMessage("Your current arsenal: ");
     uiHandler->printWarObjects(warObjectList);
+    //Ask the tank that the player want to use
+    int tankNumber = uiHandler->askNumber("What tank do you want to use?:", 1, warObjectList.size());
     //Ask what location you want to fire too
+    Location * location;
+    do{
+         location = uiHandler->askLocation("Where do you want to shoot to? (eg. C5): ", field->getColumnSize(), field->getRowSize());
+    }while(checkForReusedShootingLocation(location));
 
     //Save that fire location
+    addFiredBullet(new Bullet(location->getXLocation(), location->getYLocation(), warObjectList[tankNumber-1]->getDamage()));
+    uiHandler->printMessage("Firing the bullet!!... BOOOOOMMM ....");
+    system("pause");
+    system("cls");
 }
+/*
+Player::checkLastEvents(){
+
+}
+*/

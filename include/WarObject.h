@@ -27,6 +27,7 @@ class WarObject
         void setObjectSize(int rowSize, int columnSize, char identifier);
         void setName(std::string name);
         void setCreditCost(int creditCost);
+        void doDamage(int damage);
 
     public:
         int getRowLocation();

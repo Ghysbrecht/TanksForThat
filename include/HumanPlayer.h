@@ -9,6 +9,7 @@ class HumanPlayer : public Player
         HumanPlayer(int credits, std::vector<WarObject *> generalWarObjectList, UiHandler * uiHandler);
         virtual void init();
         virtual void yourTurn();
+        void checkLastEvents();
 
 };
 

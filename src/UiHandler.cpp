@@ -90,7 +90,7 @@ Location * UiHandler::askLocation(std::string message, int maxX, int maxY){
         }while(input.length() < 2);
         xLocation = (int)(input.at(0) - 'A');
         yLocation = (int)(input.at(1) - '0');
-    }while( yLocation > maxY || xLocation > maxX || yLocation < 0 ||xLocation < 0 );
+    }while( yLocation >= maxY || xLocation >= maxX || yLocation < 0 ||xLocation < 0 );
 
     Location * location = new Location(xLocation, yLocation);
     return location;
