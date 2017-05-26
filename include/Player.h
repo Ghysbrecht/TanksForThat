@@ -23,6 +23,7 @@ class Player
         Player(int credits, std::vector<WarObject *> generalWarObjectList, UiHandler * uiHandler);
         virtual void init() = 0;
         virtual void yourTurn() = 0;
+        virtual void reportBullets(std::vector<Bullet *> bullets) = 0;
         void incommingBullet(Bullet * bullet);
         void deleteDeadObjects();
 

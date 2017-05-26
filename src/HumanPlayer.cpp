@@ -97,8 +97,14 @@ void HumanPlayer::yourTurn(){
     system("pause");
     system("cls");
 }
-/*
-Player::checkLastEvents(){
 
+void HumanPlayer::reportBullets(std::vector<Bullet *> bullets){
+    incommingBullet(bullets.back());
+    //Show  the players field with the hits/misses
+    field->reset();
+    field->drawWarObjects(warObjectList);
+    field->drawBullets(bullets);
+    uiHandler->printMessage(field->generateField());
+    system("pause");
+    system("cls");
 }
-*/

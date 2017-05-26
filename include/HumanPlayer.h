@@ -10,6 +10,7 @@ class HumanPlayer : public Player
         virtual void init();
         virtual void yourTurn();
         void checkLastEvents();
+        virtual void reportBullets(std::vector<Bullet *> bullets);
 
 };
 

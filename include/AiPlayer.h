@@ -11,6 +11,6 @@ class AiPlayer : public Player
         virtual void yourTurn();
         void checkLastEvents();
         int getRandomInt(int minim, int maxim);
-
+        virtual void reportBullets(std::vector<Bullet *> bullets);
 };
 

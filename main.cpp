@@ -25,14 +25,15 @@ int main()
     generalWarObjectList.push_back(new LaserTank());
 
     Player * playerOne = new HumanPlayer(400, generalWarObjectList, uiHandler);
-    Player * playerTwo = new AiPlayer(1000, generalWarObjectList, uiHandler);
+    Player * playerTwo = new AiPlayer(400, generalWarObjectList, uiHandler);
 
     playerTwo->init();
     playerOne->init();
     while(1){
     playerOne->yourTurn();
-    //Should be playertwo
-    playerOne->incommingBullet(playerOne->getLastFiredBullet());
+    playerTwo->reportBullets(playerOne->getAllFiredBullets());
+    playerTwo->yourTurn();
+    playerOne->reportBullets(playerTwo->getAllFiredBullets());
     //playerOne->checkLastEvents();
     }
 

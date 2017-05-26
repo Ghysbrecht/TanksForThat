@@ -17,6 +17,9 @@ class UiHandler
         printStartScreen();
         printMessage(std::string message);
         printNumber(std::string message, int value);
+        printDestroyedTank(std::string tankName);
+        printHit(std::string tankName);
+        printMiss();
         newLine();
 
     public:

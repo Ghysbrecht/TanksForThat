@@ -95,3 +95,13 @@ Location * UiHandler::askLocation(std::string message, int maxX, int maxY){
     Location * location = new Location(xLocation, yLocation);
     return location;
 }
+
+UiHandler::printDestroyedTank(std::string tankName){
+    std::cout << "A " << tankName << " had been destroyed!" << std::endl;
+}
+UiHandler::printHit(std::string tankName){
+    std::cout << "A " << tankName << " has been hit!" << std::endl;
+}
+UiHandler::printMiss(){
+    std::cout << "MISS..." << std::endl;
+}

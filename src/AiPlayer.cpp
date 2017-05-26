@@ -50,6 +50,7 @@ void AiPlayer::init(){
 }
 
 void AiPlayer::yourTurn(){
+    uiHandler->printMessage("The AI player is firing...");
     int tankNumber = getRandomInt(1, warObjectList.size());
     Location * location;
     do{
@@ -58,11 +59,14 @@ void AiPlayer::yourTurn(){
 
     addFiredBullet(new Bullet(location->getXLocation(), location->getYLocation(), warObjectList[tankNumber-1]->getDamage()));
 }
-/*
-Player::checkLastEvents(){
 
+void AiPlayer::reportBullets(std::vector<Bullet *> bullets){
+    incommingBullet(bullets.back());
+    system("pause");
+    system("cls");
 }
-*/
+
+
 
 AiPlayer::getRandomInt(int minim, int maxim){
     return (rand() % (maxim-(minim-1))) + minim;

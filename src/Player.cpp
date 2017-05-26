@@ -1,4 +1,6 @@
 #include "Player.h"
+#include <sstream>
+#include <cstdlib>
 
 Player::Player(int credits, std::vector<WarObject *> generalWarObjectList, UiHandler * uiHandler)
 {
@@ -23,9 +25,13 @@ Bullet * Player::getLastFiredBullet(){
 void Player::incommingBullet(Bullet * bullet){
     Location * location = new Location(bullet->getXLocation(), bullet->getYLocation());
     WarObject * warObject = detector->returnCollidedObject(warObjectList, location);
-    if(warObject == nullptr) bullet->setSymbol('M');
+    if(warObject == nullptr){
+       bullet->setSymbol('M');
+       uiHandler->printMiss();
+    }
     else{
         bullet->setSymbol('H');
+        uiHandler->printHit(warObject->getName());
         warObject->doDamage(bullet->getDamage());
     }
     //Check if there are dead tanks
@@ -39,7 +45,11 @@ std::vector<Bullet *> Player::getAllFiredBullets(){
 
 void Player::deleteDeadObjects(){
     for(int i=0; i<warObjectList.size(); i++ ){
-        if(warObjectList[i]->getHealth() == 0) warObjectList.erase(warObjectList.begin()+i);
+        if(warObjectList[i]->getHealth() == 0){
+            std::stringstream ss;
+            uiHandler->printDestroyedTank(warObjectList[i]->getName());
+            warObjectList.erase(warObjectList.begin()+i);
+        }
     }
 }
 
