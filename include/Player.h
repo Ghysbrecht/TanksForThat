@@ -11,6 +11,7 @@ class Player
     protected:
         int credits;
         int lastHitStatus;
+        bool debug;
 
         Field * field;
         UiHandler * uiHandler;
@@ -29,6 +30,7 @@ class Player
 
     public:
         void addFiredBullet(Bullet * bullet); //Add a location where you want to fire to
+        void setDebug(bool status);
 
     public:
         Bullet * getLastFiredBullet();

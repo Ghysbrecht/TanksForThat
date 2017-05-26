@@ -27,6 +27,8 @@ int main()
     Player * playerOne = new HumanPlayer(400, generalWarObjectList, uiHandler);
     Player * playerTwo = new AiPlayer(400, generalWarObjectList, uiHandler);
 
+    //playerTwo->setDebug(true);
+
     playerTwo->init();
     playerOne->init();
     while(1){

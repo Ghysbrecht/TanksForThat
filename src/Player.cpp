@@ -11,6 +11,7 @@ Player::Player(int credits, std::vector<WarObject *> generalWarObjectList, UiHan
     field = new Field();
     field->fillWith(' ');
     lastHitStatus = 0;
+    debug = false;
 }
 
 
@@ -58,4 +59,8 @@ int Player::checkForReusedShootingLocation(Location * location){
         if((location->getXLocation() == firedBullets[i]->getXLocation()) && (location->getYLocation() == firedBullets[i]->getYLocation())) return 1;
     }
     return 0;
+}
+
+void Player::setDebug(bool status){
+    debug = status;
 }

@@ -11,7 +11,7 @@ AiPlayer::AiPlayer(int credits, std::vector<WarObject *> generalWarObjectList, U
 }
 
 void AiPlayer::init(){
-    uiHandler->printMessage("Initializing AI Player...");
+    if(debug) uiHandler->printMessage("Initializing AI Player...");
     while(credits > 0){
 
         int tankNumber;
@@ -38,15 +38,16 @@ void AiPlayer::init(){
 
         warObjectList.push_back(tankPointer);
     }
+    if(debug){
+        uiHandler->printMessage("Complete!");
+        uiHandler->printWarObjects(warObjectList);
 
-    uiHandler->printMessage("Complete!");
-    uiHandler->printWarObjects(warObjectList);
-
-    field->reset();
-    field->drawWarObjects(warObjectList);
-    uiHandler->printMessage(field->generateField());
-    system("pause");
-    system("cls");
+        field->reset();
+        field->drawWarObjects(warObjectList);
+        uiHandler->printMessage(field->generateField());
+        system("pause");
+        system("cls");
+    }
 }
 
 void AiPlayer::yourTurn(){
@@ -71,3 +72,5 @@ void AiPlayer::reportBullets(std::vector<Bullet *> bullets){
 AiPlayer::getRandomInt(int minim, int maxim){
     return (rand() % (maxim-(minim-1))) + minim;
 }
+
+
