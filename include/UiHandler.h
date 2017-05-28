@@ -20,6 +20,7 @@ class UiHandler
         printDestroyedTank(std::string tankName);
         printHit(std::string tankName);
         printMiss();
+        printEndScreen(std::string message);
         newLine();
 
     public:

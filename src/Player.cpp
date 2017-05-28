@@ -12,6 +12,7 @@ Player::Player(int credits, std::vector<WarObject *> generalWarObjectList, UiHan
     field->fillWith(' ');
     lastHitStatus = 0;
     debug = false;
+    dead = false;
 }
 
 
@@ -37,6 +38,7 @@ void Player::incommingBullet(Bullet * bullet){
     }
     //Check if there are dead tanks
     deleteDeadObjects();
+    if(warObjectList.size() == 0) dead = true;
     delete location;
 }
 
@@ -63,4 +65,8 @@ int Player::checkForReusedShootingLocation(Location * location){
 
 void Player::setDebug(bool status){
     debug = status;
+}
+
+bool Player::isDead(){
+    return dead;
 }

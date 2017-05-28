@@ -1,42 +1,10 @@
-#include <iostream>
-#include "DefaultTank.h"
-#include "LaserTank.h"
-#include <string>
-#include <cstdlib>
-#include <vector>
-#include "UiHandler.h"
-#include "Player.h"
-#include "HumanPlayer.h"
-#include "CollisionDetector.h"
-#include "AiPlayer.h"
-
-UiHandler* uiHandler;
-
-std::vector<WarObject *> generalWarObjectList;
+#include "Game.h"
 
 int main()
 {
+    Game game;
 
-    //Init Uihandler
-    uiHandler = new UiHandler();
-
-    //Adding all Tanks
-    generalWarObjectList.push_back(new DefaultTank());
-    generalWarObjectList.push_back(new LaserTank());
-
-    Player * playerOne = new HumanPlayer(400, generalWarObjectList, uiHandler);
-    Player * playerTwo = new AiPlayer(400, generalWarObjectList, uiHandler);
-
-    //playerTwo->setDebug(true);
-
-    playerTwo->init();
-    playerOne->init();
-    while(1){
-    playerOne->yourTurn();
-    playerTwo->reportBullets(playerOne->getAllFiredBullets());
-    playerTwo->yourTurn();
-    playerOne->reportBullets(playerTwo->getAllFiredBullets());
-    //playerOne->checkLastEvents();
+    while(!game.isFinished()){
+        game.run();
     }
-
 }

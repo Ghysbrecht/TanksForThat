@@ -2,6 +2,7 @@
 #include <cstdlib>
 #include "DefaultTank.h"
 #include "LaserTank.h"
+#include "ArmouredTank.h"
 
 HumanPlayer::HumanPlayer(int credits, std::vector<WarObject *> generalWarObjectList, UiHandler * uiHandler) : Player (credits, generalWarObjectList, uiHandler)
 {
@@ -35,6 +36,7 @@ void HumanPlayer::init(){
         switch(tankNumber){
             case 1: tankPointer = new DefaultTank(); break;
             case 2: tankPointer = new LaserTank(); break;
+            case 3: tankPointer = new ArmouredTank(); break;
         }
 
         system("cls");
@@ -84,7 +86,8 @@ void HumanPlayer::yourTurn(){
     uiHandler->printMessage("Your current arsenal: ");
     uiHandler->printWarObjects(warObjectList);
     //Ask the tank that the player want to use
-    int tankNumber = uiHandler->askNumber("What tank do you want to use?:", 1, warObjectList.size());
+    //int tankNumber = uiHandler->askNumber("What tank do you want to use?:", 1, warObjectList.size());
+    int tankNumber = 1; //Default to the first tank due to the current game design.
     //Ask what location you want to fire too
     Location * location;
     do{

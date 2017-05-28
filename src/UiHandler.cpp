@@ -21,7 +21,7 @@ UiHandler::printWarObject(WarObject* warObject){
     std::stringstream ss;
     ss << warObject->getName() << " - ";
     ss << " Damage: " << warObject->getDamage();
-    ss << " | Range: " << warObject->getRange();
+    //ss << " | Range: " << warObject->getRange();
     ss << " | Health: " << warObject->getHealth();
     ss << " | Cost: " << warObject->getCreditCost();
     std::cout << ss.str();
@@ -97,11 +97,17 @@ Location * UiHandler::askLocation(std::string message, int maxX, int maxY){
 }
 
 UiHandler::printDestroyedTank(std::string tankName){
-    std::cout << "A " << tankName << " had been destroyed!" << std::endl;
+    std::cout << "A " << tankName << " has been destroyed!" << std::endl;
 }
+
 UiHandler::printHit(std::string tankName){
     std::cout << "A " << tankName << " has been hit!" << std::endl;
 }
+
 UiHandler::printMiss(){
     std::cout << "MISS..." << std::endl;
+}
+
+UiHandler::printEndScreen(std::string message){
+    std::cout << "Game has ended! -> " << message << std::endl;
 }

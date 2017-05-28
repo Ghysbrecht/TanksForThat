@@ -2,6 +2,7 @@
 #include <cstdlib>
 #include "DefaultTank.h"
 #include "LaserTank.h"
+#include "ArmouredTank.h"
 #include <stdlib.h>
 #include <time.h>
 
@@ -25,6 +26,7 @@ void AiPlayer::init(){
         switch(tankNumber){
             case 1: tankPointer = new DefaultTank(); break;
             case 2: tankPointer = new LaserTank(); break;
+            case 3: tankPointer = new ArmouredTank(); break;
         }
 
         bool alright = false;

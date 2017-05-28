@@ -12,6 +12,7 @@ class Player
         int credits;
         int lastHitStatus;
         bool debug;
+        bool dead;
 
         Field * field;
         UiHandler * uiHandler;
@@ -36,6 +37,7 @@ class Player
         Bullet * getLastFiredBullet();
         std::vector<Bullet *> getAllFiredBullets();
         int checkForReusedShootingLocation(Location * location);
+        bool isDead();
 
 };
 

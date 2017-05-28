@@ -5,8 +5,8 @@
 class LaserTank : public WarObject
 {
     private:
-        static const int DAMAGE = 100;
-        static const int HEALTH = 50;
+        static const int DAMAGE = 50;
+        static const int HEALTH = 100;
         static const int RANGE = 15;
 
         static const int COLUMNSIZE = 2;
@@ -17,7 +17,7 @@ class LaserTank : public WarObject
         static const int COLUMNLOCATION = 0;
         static const int TURNED = 0;
 
-        static const int CREDITCOST = 200;
+        static const int CREDITCOST = 100;
 
     public:
         LaserTank();
