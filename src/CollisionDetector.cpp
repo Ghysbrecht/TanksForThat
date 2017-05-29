@@ -64,3 +64,9 @@ int CollisionDetector::checkObjectCollision(std::vector<WarObject *> warObjectLi
     return 0;
 }
 
+int CollisionDetector::checkBorderCollision(WarObject * warObject, int fieldColSize, int fieldRowSize){
+    if(warObject->getColumnLocation() + warObject->getColumnSize() <= fieldColSize && warObject->getRowLocation() + warObject->getRowSize() <= fieldRowSize && warObject->getTurned() == 0 ) return 0;
+    else if(warObject->getColumnLocation() + warObject->getRowSize() <= fieldColSize && warObject->getRowLocation() + warObject->getColumnSize() <= fieldRowSize && warObject->getTurned() == 1 ) return 0;
+    else return 1;
+}
+

@@ -51,11 +51,14 @@ void HumanPlayer::init(){
         bool alright = false;
         Location * location;
         while(!alright){
-            location = uiHandler->askLocation("Enter the coordinates (eg. C5): ", field->getColumnSize() - tankPointer->getColumnSize(), field->getRowSize() - tankPointer->getRowSize());
+            location = uiHandler->askLocation("Enter the coordinates (eg. C5): ", field->getColumnSize(), field->getRowSize());
             int turned = uiHandler->askNumber("Turn the tank by 90deg?  (1=YES 0=NO): ",0, 1);
             tankPointer->setLocation(location->getYLocation(), location->getXLocation(), turned);
-            if(!detector->checkObjectCollision(warObjectList,tankPointer)) alright = true;
-            else uiHandler->printMessage("That location is not valid!");
+            if(!detector->checkObjectCollision(warObjectList,tankPointer)){
+                if(!detector->checkBorderCollision(tankPointer, field->getColumnSize(), field->getRowSize())) alright = true;
+                else uiHandler->printMessage("Oh no! Your tank would fall of the battlefield. Try again:");
+            }
+            else uiHandler->printMessage("I'm sorry Dave I'm afraid I can't do that... Try again:");
         }
 
         delete location;
@@ -85,9 +88,10 @@ void HumanPlayer::yourTurn(){
     uiHandler->printMessage(field->generateField());
     uiHandler->printMessage("Your current arsenal: ");
     uiHandler->printWarObjects(warObjectList);
-    //Ask the tank that the player want to use
+
     //int tankNumber = uiHandler->askNumber("What tank do you want to use?:", 1, warObjectList.size());
     int tankNumber = 1; //Default to the first tank due to the current game design.
+
     //Ask what location you want to fire too
     Location * location;
     do{

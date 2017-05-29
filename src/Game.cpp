@@ -12,11 +12,11 @@ Game::Game(){
     generalWarObjectList.push_back(new ArmouredTank());
 
     //Setting up the players
-    playerOne = new HumanPlayer(100, generalWarObjectList, uiHandler);
-    playerTwo = new AiPlayer(100, generalWarObjectList, uiHandler);
+    playerOne = new HumanPlayer(500, generalWarObjectList, uiHandler);
+    playerTwo = new AiPlayer(500, generalWarObjectList, uiHandler);
 
     //Show the generated AI field
-    playerTwo->setDebug(true);
+    //playerTwo->setDebug(true);
 
     //Initing the Players
     playerTwo->init();
