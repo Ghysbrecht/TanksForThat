@@ -7,6 +7,8 @@
 
 class UiHandler
 {
+    private:
+        int consoleWidth;
     public:
         UiHandler();
 
@@ -21,13 +23,16 @@ class UiHandler
         printHit(std::string tankName);
         printMiss();
         printEndScreen(std::string message);
+        printTankSize(WarObject* warObject);
+        printTitle(std::string message);
+        setDefaultColor();
         newLine();
 
     public:
         int askNumber(std::string message, int minimum, int maximum);
         Location * askLocation(std::string message, int maxX, int maxY);
-
-
-
+        std::string centerText(std::string text);
+        std::string returnDestroyed(std::string tankName);
+        std::string returnHit(std::string tankName);
 };
 

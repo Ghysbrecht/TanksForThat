@@ -15,7 +15,6 @@ class Field
 
     public:
         Field();
-        virtual ~Field();
 
     public:
         void reset();
@@ -30,6 +29,8 @@ class Field
 
     private:
         std::string generateColumnIdentifiers();
+        std::string generateTopBar();
+        std::string generateBottomBar();
 
     public:
         int getRowSize();

@@ -10,13 +10,18 @@ HumanPlayer::HumanPlayer(int credits, std::vector<WarObject *> generalWarObjectL
 }
 
 void HumanPlayer::init(){
+    system("Color 47");
     uiHandler->printStartScreen();
     system("pause");
     system("cls");
 
+
     while(credits > 0){
-        uiHandler->printMessage("These are all the tanks you can purchase, they have their unique stats.");
-        uiHandler->printMessage("Choose wisely!");
+        system("Color 17");
+        uiHandler->printTitle("Choose your tanks");
+        uiHandler->newLine();
+        uiHandler->printMessage("These are all the tanks you can purchase.");
+        uiHandler->newLine();
         uiHandler->printWarObjects(generalWarObjectList);
 
         uiHandler->printMessage("Your current arsenal: ");
@@ -40,7 +45,12 @@ void HumanPlayer::init(){
         }
 
         system("cls");
-        uiHandler->printMessage("Place your newly purchased tank. Make sure to not place them outside the area or on other tanks.");
+        uiHandler->printTitle("Place your tank");
+        uiHandler->newLine();
+        uiHandler->printMessage(uiHandler->centerText("Make sure to place them inside the area and not on other tanks."));
+        uiHandler->printMessage(uiHandler->centerText("This is how your tank looks like:"));
+        uiHandler->newLine();
+        uiHandler->printTankSize(tankPointer);
         uiHandler->newLine();
 
         //Show the field
@@ -66,7 +76,10 @@ void HumanPlayer::init(){
         warObjectList.push_back(tankPointer);
         system("cls");
     }
+    system("Color 27");
 
+    uiHandler->printTitle("Field complete");
+    uiHandler->newLine();
     uiHandler->printMessage("You are set to battle your enemy! Here is your army:");
     uiHandler->printWarObjects(warObjectList);
 
@@ -75,13 +88,16 @@ void HumanPlayer::init(){
     uiHandler->printMessage(field->generateField());
     system("pause");
     system("cls");
+    system("Color 07");
 }
 
 void HumanPlayer::yourTurn(){
     //Show the enemies field (All your fire locations that are hot or miss)
     //And ask what tank you want to use.
-    uiHandler->printMessage("This is your view of the enemy's map.");
-    if(getAllFiredBullets().empty()) uiHandler->printMessage("You have not fired any bullets yet.");
+    uiHandler->printTitle("Your turn");
+    uiHandler->printMessage(uiHandler->centerText("This is your view of the enemy's map."));
+    if(getAllFiredBullets().empty()) uiHandler->printMessage(uiHandler->centerText("You have not fired any bullets yet."));
+    uiHandler->newLine();
 
     field->reset();
     field->drawBullets(getAllFiredBullets());
@@ -103,15 +119,19 @@ void HumanPlayer::yourTurn(){
     uiHandler->printMessage("Firing the bullet!!... BOOOOOMMM ....");
     system("pause");
     system("cls");
+    uiHandler->printTitle("Your turn");
 }
 
 void HumanPlayer::reportBullets(std::vector<Bullet *> bullets){
     incommingBullet(bullets.back());
     //Show  the players field with the hits/misses
+    uiHandler->newLine();
     field->reset();
     field->drawWarObjects(warObjectList);
     field->drawBullets(bullets);
+    uiHandler->printMessage("Your field with enemy bullets:");
     uiHandler->printMessage(field->generateField());
     system("pause");
     system("cls");
+    uiHandler->setDefaultColor();
 }

@@ -32,6 +32,7 @@ void Player::incommingBullet(Bullet * bullet){
        uiHandler->printMiss();
     }
     else{
+        system("Color 47");
         bullet->setSymbol('H');
         uiHandler->printHit(warObject->getName());
         warObject->doDamage(bullet->getDamage());

@@ -3,15 +3,9 @@
 #include <stdio.h>
 
 
-Field::Field()
-{
-
+Field::Field(){
 }
 
-Field::~Field()
-{
-    //dtor
-}
 
 void Field::fillWith(char character){
     for(int i=0;i<ROWS;i++){
@@ -23,30 +17,25 @@ void Field::fillWith(char character){
 
 std::string Field::generateField(){
     std::stringstream ss;
-
-    ss << generateColumnIdentifiers();
-
+    ss << " " << generateTopBar();
+    ss << " " << (char)186 << " " << generateColumnIdentifiers() << " " << (char)186 << std::endl;
     for(int i=0;i<ROWS;i++){
-        ss << i;
-        for(int j=0;j<COLUMNS;j++){
-            ss << " " << fieldArray[i][j];
-        }
-        ss << std::endl;
+        ss << " " << (char)186 << " " << i;
+        for(int j=0;j<COLUMNS;j++) ss << " " << fieldArray[i][j];
+        ss << " " << (char)186 << std::endl;
     }
+    ss << " " << generateBottomBar();
     return ss.str();
 }
 
 std::string Field::generateColumnIdentifiers(){
     std::stringstream ss;
-
     char columnIdentifier = 'A';
     ss << " ";
     for(int j=0;j<COLUMNS;j++){
         ss << " " << columnIdentifier;
         columnIdentifier++;
     }
-    ss << std::endl;
-
     return ss.str();
 }
 
@@ -95,4 +84,22 @@ void Field::drawBullets(std::vector<Bullet *> bullets){
 
 void Field::drawBullet(Bullet * bullet){
     fieldArray[bullet->getYLocation()][bullet->getXLocation()] = bullet->getSymbol();
+}
+
+std::string Field::generateTopBar(){
+    std::stringstream ss;
+    ss << (char)201;
+    for(int j=0;j<=((COLUMNS*2)+2);j++) ss << (char)205;
+    ss << (char)187;
+    ss << std::endl;
+    return ss.str();
+}
+
+std::string Field::generateBottomBar(){
+    std::stringstream ss;
+    ss << (char)200;
+    for(int j=0;j<=((COLUMNS*2)+2);j++) ss << (char)205;
+    ss << (char)188;
+    ss << std::endl;
+    return ss.str();
 }

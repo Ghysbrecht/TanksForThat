@@ -6,7 +6,7 @@ class DefaultTank : public WarObject
 {
     private:
         static const int DAMAGE = 50;
-        static const int HEALTH = 400;
+        static const int HEALTH = 200;
         static const int RANGE = 5;
 
         static const int COLUMNSIZE = 2;

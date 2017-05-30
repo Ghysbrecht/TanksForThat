@@ -6,6 +6,7 @@ class Bullet
     private:
         int damage;
         char symbol;
+
         Location * location;
 
     public:

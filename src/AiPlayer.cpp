@@ -53,6 +53,7 @@ void AiPlayer::init(){
 }
 
 void AiPlayer::yourTurn(){
+    uiHandler->printTitle("Enemy's turn");
     uiHandler->printMessage("The AI player is firing...");
     int tankNumber = getRandomInt(1, warObjectList.size());
     Location * location;
@@ -67,6 +68,7 @@ void AiPlayer::reportBullets(std::vector<Bullet *> bullets){
     incommingBullet(bullets.back());
     system("pause");
     system("cls");
+    uiHandler->setDefaultColor();
 }
 
 

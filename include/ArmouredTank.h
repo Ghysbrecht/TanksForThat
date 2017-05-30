@@ -6,7 +6,7 @@ class ArmouredTank : public WarObject
 {
     private:
         static const int DAMAGE = 50;
-        static const int HEALTH = 600;
+        static const int HEALTH = 300;
         static const int RANGE = 5;
 
         static const int COLUMNSIZE = 3;

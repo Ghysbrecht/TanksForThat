@@ -1,9 +1,9 @@
 #include "UiHandler.h"
-
+#include <cstdlib>
 
 UiHandler::UiHandler()
 {
-
+    consoleWidth = 80;
 }
 
 UiHandler::printWarObjects(std::vector<WarObject *> warObjectList){
@@ -18,8 +18,10 @@ UiHandler::printWarObjects(std::vector<WarObject *> warObjectList){
 
 
 UiHandler::printWarObject(WarObject* warObject){
+    std::string warObjectName = warObject->getName();
+    for(int i = warObjectName.size(); i < 18; i++) warObjectName.append(" ");
     std::stringstream ss;
-    ss << warObject->getName() << " - ";
+    ss << warObjectName << " - ";
     ss << " Damage: " << warObject->getDamage();
     //ss << " | Range: " << warObject->getRange();
     ss << " | Health: " << warObject->getHealth();
@@ -29,22 +31,22 @@ UiHandler::printWarObject(WarObject* warObject){
 
 UiHandler::printStartScreen(){
     std::stringstream ss;
-    ss << "  _______             _         " << std::endl;
-    ss << " |__   __|           | |        " << std::endl;
-    ss << "    | |  __ _  _ __  | | __  ___" << std::endl;
-    ss << "    | | / _` || '_ \\ | |/ // __|" << std::endl;
-    ss << "    | || (_| || | | ||   < \\__ \\" << std::endl;
-    ss << "  __|_|_\\__,_||_| |_||_|\\_\\|___/" << std::endl;
-    ss << " |  ____|                       " << std::endl;
-    ss << " | |__  ___   _ __              " << std::endl;
-    ss << " |  __|/ _ \ | '__|             " << std::endl;
-    ss << " | |  | (_) || |                " << std::endl;
-    ss << " |_|___\\___/ |_|         _      " << std::endl;
-    ss << " |__   __|| |           | |     " << std::endl;
-    ss << "    | |   | |__    __ _ | |_    " << std::endl;
-    ss << "    | |   | '_ \\  / _` || __|   " << std::endl;
-    ss << "    | |   | | | || (_| || |_    " << std::endl;
-    ss << "    |_|   |_| |_| \\__,_| \\__|   " << std::endl;
+    ss << centerText(" _______             _         ") << std::endl;
+    ss << centerText("|__   __|           | |        ") << std::endl;
+    ss << centerText("   | |  __ _  _ __  | | __ ___ ") << std::endl;
+    ss << centerText("   | | / _` || '_ \\ | |/ // __|") << std::endl;
+    ss << centerText("   | || (_| || | | ||   < \\__ \\") << std::endl;
+    ss << centerText(" __|_|_\\__,_||_| |_||_|\\_\\|___/") << std::endl;
+    ss << centerText("|  ____|                       ") << std::endl;
+    ss << centerText("| |__  ___   _ __              ") << std::endl;
+    ss << centerText("|  __|/ _ \\ | '__|             ") << std::endl;
+    ss << centerText("| |  | (_) || |                ") << std::endl;
+    ss << centerText("|_|___\\___/ |_|         _      ") << std::endl;
+    ss << centerText("|__   __|| |           | |     ") << std::endl;
+    ss << centerText("   | |   | |__    __ _ | |_    ") << std::endl;
+    ss << centerText("   | |   | '_ \\  / _` || __|   ") << std::endl;
+    ss << centerText("   | |   | | | || (_| || |_    ") << std::endl;
+    ss << centerText("   |_|   |_| |_| \\__,_| \\__|   ") << std::endl;
     ss << std::endl << std::endl;
     ss << std::endl;
     std::cout << ss.str();
@@ -97,17 +99,93 @@ Location * UiHandler::askLocation(std::string message, int maxX, int maxY){
 }
 
 UiHandler::printDestroyedTank(std::string tankName){
-    std::cout << "A " << tankName << " has been destroyed!" << std::endl;
+    std::cout << centerText(returnDestroyed(tankName)) << std::endl;
 }
 
 UiHandler::printHit(std::string tankName){
-    std::cout << "A " << tankName << " has been hit!" << std::endl;
+    std::stringstream ss;
+    ss << centerText(" _   _ ___ _____ ") << std::endl;
+    ss << centerText("| | | |_ _|_   _|") << std::endl;
+    ss << centerText("| |_| || |  | |  ") << std::endl;
+    ss << centerText("|  _  || |  | |  ") << std::endl;
+    ss << centerText("|_| |_|___| |_|  ") << std::endl;
+    ss << std::endl;
+    ss << centerText(returnHit(tankName)) << std::endl;
+    std::cout << ss.str();
+
 }
 
 UiHandler::printMiss(){
-    std::cout << "MISS..." << std::endl;
+std::stringstream ss;
+ss << centerText(" __  __ ___ ____ ____  ") << std::endl;
+ss << centerText("|  \\/  |_ _/ ___/ ___| ") << std::endl;
+ss << centerText("| |\\/| || |\\___ \\___ \\ ") << std::endl;
+ss << centerText("| |  | || | ___) ___) |") << std::endl;
+ss << centerText("|_|  |_|___|____|____/ ") << std::endl;
+ss << std::endl;
+std::cout << ss.str();
 }
 
 UiHandler::printEndScreen(std::string message){
-    std::cout << "Game has ended! -> " << message << std::endl;
+std::stringstream ss;
+ss << centerText("   _____          __  __ ______    ______      ________ _____   ") << std::endl;
+ss << centerText("  / ____|   /\\   |  \\/  |  ____|  / __ \\ \\    / /  ____|  __ \\  ") << std::endl;
+ss << centerText(" | |  __   /  \\  | \\  / | |__    | |  | \\ \\  / /| |__  | |__) | ") << std::endl;
+ss << centerText(" | | |_ | / /\\ \\ | |\\/| |  __|   | |  | |\\ \\/ / |  __| |  _  /  ") << std::endl;
+ss << centerText(" | |__| |/ ____ \\| |  | | |____  | |__| | \\  /  | |____| | \\ \\  ") << std::endl;
+ss << centerText("  \\_____/_/    \\_\\_|  |_|______|  \\____/   \\/   |______|_|  \\_\\ ") << std::endl;
+ss << std::endl << std::endl;
+ss << centerText("Game has ended!") << std::endl;
+ss << centerText(message) << std::endl << std::endl << std::endl;
+std::cout << ss.str();
 }
+
+UiHandler::printTankSize(WarObject* warObject){
+    std::stringstream ss;
+    std::string tempString = "";
+    for(int i=0; i<warObject->getRowSize(); i++){
+        for(int j=0; j<warObject->getColumnSize(); j++){
+                tempString.push_back(warObject->getIdentifier());
+                tempString.push_back(' ');
+        }
+        ss << centerText(tempString) << std::endl;
+        tempString = "";
+    }
+    std::cout << ss.str();
+}
+
+UiHandler::setDefaultColor(){
+    system("Color 07");
+}
+
+std::string UiHandler::centerText(std::string text){
+    int tempNumber = (int)(consoleWidth - text.size())/2;
+    if(tempNumber > 0) for(int i = 0; i < tempNumber ; i++) text.insert(0," ");
+    return text;
+}
+
+std::string UiHandler::returnDestroyed(std::string tankName){
+    std::stringstream ss;
+    ss << "A " << tankName << " has been destroyed!";
+    return ss.str();
+}
+
+std::string UiHandler::returnHit(std::string tankName){
+    std::stringstream ss;
+    ss << "A " << tankName << " has been hit!";
+    return ss.str();
+}
+
+UiHandler::printTitle(std::string message){
+    std::stringstream ss;
+    ss << (char)201;
+    for(int i=0; i<78; i++) ss << (char)205;
+    ss << (char)187;
+    ss << centerText(message) << std::endl;
+    ss << (char)200;
+    for(int i=0; i<78; i++) ss << (char)205;
+    ss << (char)188;
+    std::cout << ss.str();
+}
+
+
